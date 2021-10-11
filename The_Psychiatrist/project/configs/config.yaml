@@ -1,0 +1,43 @@
+# Psychoatrist configuration file
+# Be careful while editing the file, you might break things here
+
+# email and password of the owner account
+# this account has admin permissions
+# roles are admin, user
+
+username: "admin"
+password: "admin1"
+
+# SQLAlchemy Database URI
+sql_database_uri: "sqlite:///./project/db/psychiatrist.db"
+
+# the secret key for maintaining sessions
+secret: "ThEPsYcHiAtRiSt2o2l"
+
+# select any logging level and then restart the program
+# The logging levels are DEBUG, INFO, WARNING, ERROR, CRITICAL
+logging: DEBUG
+
+# Twitter bearer token required to pull tweets
+bearer: "AAAAAAAAAAAAAAAAAAAAAOmFMwEAAAAA7YWtaceFEW9fxO8EC6H5ZKKgSzg%3DqbhpCRRAQU1vw0cmLfqpmaZpNfp6zgCGWv0l55HPHkRYVH1hyN"
+
+# Query to search on Twitter
+query: "(suicidal OR death OR dispair OR hopless OR (want to die OR not anymore OR so hurt))(I OR i OR me OR myself OR my)"
+
+# Max number of pages to pull from Twitter
+max_page_token_limit: 100
+
+# Wait (in seconds) while pulling next page form Twitter
+tweet_wait: 5
+
+# Wait to control prediction thread (in seconds)
+prediction_control: 60
+
+# Set whether to track SQLAlchemy Modifications
+sql_alchemy_track_modifications: False
+
+# fields whose data is to be retrieved from twitter through API
+fields: "tweet.fields=author_id,id,text,created_at"
+
+# Path to prediction model
+prediction_model: "./project/lib/svm_model.sav"

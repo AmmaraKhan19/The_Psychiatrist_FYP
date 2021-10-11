@@ -1,0 +1,175 @@
+<head>
+    <title>User Sign Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/navtitle-1.png')}}" sizes="36x36">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}" media="screen,projection">
+</head>
+<body class="cyan lighten-1">
+    <div class="row">
+      <div class="col s12 center">
+        <h1 class="white-text">The Psychiatrist</h1>
+        <h5 class="white-text">We Care about you</h5>
+      </div>
+    </div>
+    <p class="white-text center">Fill all the fields to create account</p>
+    <div class="row">
+      {% with messages = get_flashed_messages() %}
+  {% if messages %}
+      <div class="notification is-danger">
+          {{ messages[0] }}
+      </div>
+  {% endif %}
+  {% endwith %}
+      <form class="col l5 offset-l4 s12" method="POST" action="/signup">
+        <div class="row">
+            <div class="input-field col s12">
+              <label for="firstname" class="white-text">First Name</label>
+              <input id="firstname" name="firstname" type="text" class="validate white-text" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+              <label for="lastname" class="white-text">Last Name</label>
+              <input id="lastname" name="lastname" type="text" class="validate white-text" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+              <label for="lastname" class="white-text">Email</label>
+              <input type="email" name="email" id="email" class="validate white-text" required>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <label for="username" class="white-text">Username</label>
+            <input id="username" name="username" type="text" class="validate white-text" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <label for="password" class="white-text">Password</label>
+            <input id="password" name="password" type="password" class="validate white-text" required>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+              <label for="password" class="white-text">Confirm Password</label>
+              <input type="password" name="cpassword" id="cpassword" class="validate white-text" required>
+            </div>
+        </div>
+        
+        <div class="row">
+          <div class="input-field col s12 center">
+            <input type="reset" class="validate white-text blue darken-1 btn" onclick="clearFunc()" value="CLEAR">
+            <input type="submit" class="validate white-text blue darken-1 btn" onclick="registration();{{ url_for('main.index')}}" value="CREATE ACCOUNT">
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  
+    <!--JavaScript at end of body for optimized loading-->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js')}}" defer async></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/init.js')}}" defer async></script>
+  <script type="text/javascript" charset="utf-8" async defer>
+        function registration()
+	{
+
+		var firstname= document.getElementById("firstname").value;
+        var lastname= document.getElementById("lastname").value;
+		var email= document.getElementById("email").value;
+		var username= document.getElementById("username").value;
+		var pwd= document.getElementById("password").value;			
+		var cpwd= document.getElementById("cpassword").value;
+		
+        //email id expression code
+		var pwd_expression = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/;
+		var letters = /^[A-Za-z]+$/;
+		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+		if(firstname=='')
+		{
+			alert('Please enter your first name');
+		}
+		else if(!letters.test(firstname))
+		{
+			alert('Name field required only alphabet characters');
+		}
+        else if(lastname=='')
+		{
+			alert('Please enter your last name');
+		}
+		else if(!letters.test(lastname))
+		{
+			alert('Name field required only alphabet characters');
+		}
+		else if(email=='')
+		{
+			alert('Please enter your user email id');
+		}
+		else if (!filter.test(email))
+		{
+			alert('Invalid email');
+		}
+		else if(username=='')
+		{
+			alert('Please enter the user name.');
+		}
+		else if(!letters.test(username))
+		{
+			alert('User name field required only alphabet characters');
+		}
+		else if(pwd=='')
+		{
+			alert('Please enter Password');
+		}
+		else if(cpwd=='')
+		{
+			alert('Enter Confirm Password');
+		}
+		else if(!pwd_expression.test(pwd))
+		{
+			alert ('Upper case, Lower case, Special character and Numeric letter are required in Password filed');
+		}
+		else if(pwd != cpwd)
+		{
+			alert ('Password not Matched');
+		}
+		else if(document.getElementById("cpassword").value.length < 6)
+		{
+			alert ('Password minimum length is 6');
+		}
+		else if(document.getElementById("cpassword").value.length > 12)
+		{
+			alert ('Password max length is 12');
+		}
+		else
+		{				                            
+               alert('Thank You for Signing up & You are Redirecting to The Psychiatrist Website');
+		}
+	}
+	function clearFunc()
+	{
+		document.getElementById("firstname").value="";
+    document.getElementById("lastname").value="";
+		document.getElementById("email").value="";
+		document.getElementById("username").value="";
+		document.getElementById("password").value="";
+		document.getElementById("password").value="";
+	}
+  </script>
+</body>
+       

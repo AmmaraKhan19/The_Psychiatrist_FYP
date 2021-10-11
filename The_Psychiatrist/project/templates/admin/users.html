@@ -1,0 +1,199 @@
+{%extends 'admin/base.html'%}
+  {% block title %} {{title}} {% endblock %}
+	{%block content %}
+    <div class="container">
+      <h1 class="center">Users</h1>
+      <br>
+      <br>
+      <a class='waves-effect waves-light btn-small center' href='/add_user' class='white-text'>CREATE USER</a>
+      <div class="center">
+        <a class="waves-effect waves-light btn-small " onClick="get_users()">Refresh</a>
+        <br><br>
+      </div>
+      
+      <table id="myTable" class="table-responsive" style="border:1px solid black;">
+        <thead>
+            <tr>
+              <th style="word-wrap: break-word; max-width: 150px;">ID</th>
+              <th style="word-wrap: break-word; max-width: 150px;">First Name</th>
+              <th style="word-wrap: break-word; max-width: 150px;">Last Name</th>
+              <th style="word-wrap: break-word; max-width: 150px;">Username</th>
+              <th style="word-wrap: break-word; max-width: 150px;">Email</th>
+              <th style="word-wrap: break-word; max-width: 150px;">Password</th>
+              <th style="word-wrap: break-word; max-width: 150px;">Created At</th>
+              <th style="word-wrap: break-word; max-width: 150px;">Role</th>
+              <th style="word-wrap: break-word; max-width: 150px;">Edit</th>
+              <th style="word-wrap: break-word; max-width: 150px;">Delete</th>
+            </tr>
+      </thead>
+      <tbody id="user_table">
+        <tr>
+          <td>
+            <div class="preloader-wrapper small active">
+              <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="preloader-wrapper small active">
+              <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="preloader-wrapper small active">
+              <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="preloader-wrapper small active">
+              <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="preloader-wrapper small active">
+              <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="preloader-wrapper small active">
+              <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="preloader-wrapper small active">
+              <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="preloader-wrapper small active">
+              <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="preloader-wrapper small active">
+              <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="preloader-wrapper small active">
+              <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<br>
+
+<script type="text/javascript" charset="utf-8" async defer>
+function get_users(){
+document.getElementById("user_table").innerHTML = "";
+$.get("{{ url_for('main.get_users') }}", function(data, status) {
+  if (status == "success") {
+    users = data["users"]
+    html_content = ""
+    for (i = 0; i < users.length; i++) {
+      html_content += "<tr>"
+      html_content += "<td style='max-width: 150px;'>" + users[i]["id"] + "</td>"
+      html_content += "<td style='max-width: 150px;'>" + users[i]["first_name"] + "</td>"
+      html_content += "<td style='max-width: 150px;'>" + users[i]["last_name"] + "</td>"
+      html_content += "<td style='max-width: 150px;'>" + users[i]["username"] + "</td>"
+      html_content += "<td style='max-width: 150px;'>" + users[i]["email"] + "</td>"
+      html_content += "<td style='max-width: 150px;'>" + users[i]["password"] + "</td>"
+      html_content += "<td style='max-width: 150px;'>" + users[i]["created_at"] + "</td>"
+      html_content += "<td style='max-width: 150px;'>" + users[i]["role"] + "</td>"
+      html_content += "<td><a class='waves-effect waves-light btn-small center' href='/edit_user/" + users[i]["id"] + "' class='white-text'>" + "Edit" + "</a></td>"
+      html_content += "<td><a class='waves-effect waves-light btn-small center' href='/delete_user/" + users[i]["id"] + "' class='white-text'>" + "Delete" + "</a></td>"
+      html_content += "</tr>"
+    }
+    document.getElementById("user_table").innerHTML = html_content;
+  }
+})
+};
+
+$(document).ready( function () {
+  get_users();
+});
+</script>
+
+{%endblock %}

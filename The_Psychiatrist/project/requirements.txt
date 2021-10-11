@@ -1,0 +1,13 @@
+flask
+flask-login
+flask-security
+flask-sqlalchemy
+pandas
+h5df
+nltk
+textblob
+keras
+pyyaml
+tensorflow==2.2
+sklearn
+scikit-learn==0.22.1

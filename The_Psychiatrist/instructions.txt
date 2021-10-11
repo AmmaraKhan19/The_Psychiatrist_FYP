@@ -1,0 +1,4 @@
+1. Before running the application install git, so that you can use git bash to run commands.
+2. The .gitignore file contains all the folders ignored while pushing to github.
+3. The requirements.txt file in project folder contains all the packages required to be installed.
+4. Just install the requirements.txt file.

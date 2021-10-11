@@ -1,0 +1,29 @@
+{%extends 'admin/base.html'%}
+  {% block title %} {{title}} {% endblock %}
+	{%block content %}
+    <div class="container">
+      <h1 class="center col s12">Edit User</h1>
+      <br><br>
+      <form action="/edit_user/{{user_to_update_id}}" method="POST">
+        <label class="black-text">First Name
+        <input name="first_name" type="text" value="{{fname_of_user_to_update}}"></label>
+        
+        <label class="black-text">Last Name</label>
+        <input name="last_name" type="text" value="{{lname_of_user_to_update}}">
+
+        <label class="black-text">Username</label>
+        <input name="username" type="text" value="{{uname_of_user_to_update}}">
+
+        <label class="black-text">Email</label>
+        <input name="email" type="email" value="{{email_of_user_to_update}}">
+        
+        <label class="black-text">Password</label>
+        <input id="password" name="password" value="{{pswrd_of_user_to_update}}">
+        
+        <label class="black-text">Role</label>
+        <input name="role" value="{{role_of_user_to_update}}">
+        
+        <input type="submit" value="Update User" class="waves-effect waves-light btn-small">
+      </form>
+  </div>
+    {%endblock %}

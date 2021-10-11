@@ -1,0 +1,57 @@
+<head>
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/navtitle-1.png')}}" sizes="36x36">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}" media="screen,projection">
+</head>
+<body class="cyan lighten-1">
+  <div class="row">
+    <div class="col s12 center">
+      <h1 class="white-text">The Psychiatrist</h1>
+      <h5 class="white-text">We Care about you</h5>
+    </div>
+  </div>
+  <p class="white-text center">Only authorized people are allowed to proceed</p>
+  <div class="row">
+    {% with messages = get_flashed_messages() %}
+{% if messages %}
+    <div class="notification is-danger">
+        {{ messages[0] }}
+    </div>
+{% endif %}
+{% endwith %}
+    <form class="col l5 offset-l4 s12" method="POST" action="/login">
+      <div class="row">
+        <div class="input-field col s12">
+          <label for="username" class="white-text">Username</label>
+          <input id="username" name="username" type="text" class="validate white-text" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <label for="password" class="white-text">Password</label>
+          <input id="password" name="password" type="password" class="validate white-text" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 center">
+          <input type="submit" class="validate white-text blue darken-1 btn" onclick="{{ url_for('main.index')}}" value="LOGIN">
+        </div>
+        <br>
+        <p class="white-text">New user?<a class="red-text" href="{{ url_for('main.signup')}}"> Register Now!</a></p>
+      </div>
+    </form>
+  </div>
+</div>
+
+  <!--JavaScript at end of body for optimized loading-->
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js')}}" defer async></script>
+      <script type="text/javascript" src="{{ url_for('static', filename='js/init.js')}}" defer async></script>
+</body>         
