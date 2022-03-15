@@ -19,7 +19,7 @@ secret: "ThEPsYcHiAtRiSt2o2l"
 logging: DEBUG
 
 # Twitter bearer token required to pull tweets
-bearer: "AAAAAAAAAAAAAAAAAAAAAOmFMwEAAAAA7YWtaceFEW9fxO8EC6H5ZKKgSzg%3DqbhpCRRAQU1vw0cmLfqpmaZpNfp6zgCGWv0l55HPHkRYVH1hyN"
+bearer: ""
 
 # Query to search on Twitter
 query: "(suicidal OR death OR dispair OR hopless OR (want to die OR not anymore OR so hurt))(I OR i OR me OR myself OR my)"
